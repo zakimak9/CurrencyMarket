@@ -77,7 +77,6 @@ public class DataUtils {
 			for (String key : keys) {
 				
 				if("All".equals(keyName) || key.contains(keyName)){
-					System.out.println(key);
 					if("All".equals(date)){
 						result.put(key.replaceAll("mapping:*", ""),
 								jedis.lrange(key, 0, -1));
@@ -85,14 +84,8 @@ public class DataUtils {
 						List<String> lRange = jedis.lrange(key, 0, -1);
 						List<String> filteredRows = new ArrayList<String>();
 						for(String value: lRange){
-							System.out.println("value:" + value);
-							System.out.println("date: " + date);
 							if(value.contains(date)){
-								System.out.println("i was here");
 								filteredRows.add(value);
-							}else{
-								System.out.println("I was not here");
-								//lRange.remove(value);
 							}
 							
 						}
@@ -249,7 +242,6 @@ public class DataUtils {
 
 		}
 		String data = builder.build().toString();
-		System.out.println(data);
 		return data;
 
 	}
